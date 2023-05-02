@@ -44,3 +44,19 @@ You don’t have to ever use `eject`. The curated feature set is suitable for sm
 You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
 To learn React, check out the [React documentation](https://reactjs.org/).
+
+
+1. When writing React components, use js field name! (i.e. not `class` but `className`)
+It's not HTML.
+
+2. If you want your component to be updated when some local variable changed - make it a state.
+
+3. If you want to get access to real DOM elements (read input value) - pass a `ref` property over there.
+
+4. If you DONT want your component to be updated - first of all check its properties (wrap all reference types) and second - wrap it in memo.
+
+5. To make your function reference the same use useCallback. Don't forget to pass dependencies, if needed.
+
+6. To make your arrays and objects reference the same use useMemo. Don't forget to pass dependencies, if needed.
+
+7. If you want to render an array of elements - use `key` prop. Key should be really unique id which doesnt change when it's not needed.

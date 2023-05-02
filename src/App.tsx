@@ -1,24 +1,26 @@
-import React from 'react';
-import logo from './logo.svg';
+import { useCallback, useMemo, useState } from 'react';
 import './App.css';
+import { Button } from './components/Button';
+import { ControlledNumericInput, NumericInput } from './components/NumericInput';
+import { makeArray } from './utils/makeArray';
+  
 
-function App() {
+function App({ buttonsCount }: { buttonsCount: number; }) {
+  const [ arr, setArr ] = 
+    useState<number[]>(makeArray(buttonsCount));
+  
+  const onSubmit = useCallback((n: number) => {
+    setArr(makeArray(n))
+  }, []);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {arr.map((rnd) => <Button key={rnd} />)}
+    
+      <ControlledNumericInput
+        defaultValue={`${buttonsCount}`}
+        onSubmit={onSubmit} 
+      />
     </div>
   );
 }
